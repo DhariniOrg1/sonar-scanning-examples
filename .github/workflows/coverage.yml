@@ -8,7 +8,7 @@ jobs:
     name: Test Java
     defaults:
       run:
-        working-directory: ./sonarqube-scanner-maven/maven-basic
+        working-directory: ./sonarqube-scanner-maven
     steps:
     - uses: actions/checkout@v1
     - name: Set up JDK 17
@@ -16,7 +16,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Run tests
+    - name: Run tests1
+      working-directory: ./maven-basic
+      run: mvn clean verify
+    - name: Run tests2
+      working-directory: ./maven-multilingual
+      run: mvn clean verify
+    - name: Run tests3
+      working-directory: ./maven-multimodule
       run: mvn clean verify
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v3
