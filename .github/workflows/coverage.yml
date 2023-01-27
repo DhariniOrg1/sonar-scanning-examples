@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Test python API
+    name: Test Java
     defaults:
       run:
         working-directory: ./sonarqube-scanner-maven/maven-basic
@@ -15,6 +15,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
+        distribution: 'temurin'
     - name: Run tests
       run: mvn clean verify
     - name: Upload coverage reports to Codecov with GitHub Action
